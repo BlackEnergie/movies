@@ -31,4 +31,4 @@ Cet onglet prend en compte les films que vous avez aimés pour vous recommender 
 
 ## Je ne trouve pas mon film !
 **Tous les onglets sauf 'Search' n'utilisent que les films présents dans le catalogue du site !**
-A chaque recherche sur ses onglets, **un lien vous propose de faire une recherche avec l'outil 'Search' et ajouter votre film à la base de données**. Il sera désormais accessible à tous !
+A chaque recherche sur ses onglets, **un lien vous propose de faire une recherche avec l'outil 'Search' et ajouter votre film à la base de données**. Les résultats de cette recherche seront ensuite accessibles à tous !
