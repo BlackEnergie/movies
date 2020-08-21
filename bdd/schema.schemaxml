@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemadesigner version="6.5">
+<source>
+<database charset="latin1" collation="latin1_swedish_ci">movies</database>
+</source>
+<canvas zoom="100">
+<tables>
+<table name="actor" view="colnames">
+<left>149</left>
+<top>36</top>
+<width>78</width>
+<height>112</height>
+<sql_create_table>CREATE TABLE `actor` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(190) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UNIQ_447556F95E237E06` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=6551 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</sql_create_table>
+</table>
+<table name="director" view="colnames">
+<left>578</left>
+<top>136</top>
+<width>108</width>
+<height>137</height>
+<sql_create_table>CREATE TABLE `director` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(190) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UNIQ_1E90D3F05E237E06` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=1499 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</sql_create_table>
+</table>
+<table name="genre" view="colnames">
+<left>570</left>
+<top>676</top>
+<width>78</width>
+<height>112</height>
+<sql_create_table>CREATE TABLE `genre` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UNIQUE` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="movie" view="colnames">
+<left>782</left>
+<top>8</top>
+<width>144</width>
+<height>351</height>
+<sql_create_table>CREATE TABLE `movie` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `year` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `released` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `runtime` int(11) NOT NULL,
+  `genre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `plot` varchar(5000) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `country` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `awards` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `poster` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `imdb_id` varchar(190) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `imdb_rating` decimal(2,1) NOT NULL,
+  `imdb_votes` int(11) NOT NULL,
+  `box_office` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `director_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UNIQ_1D5EF26F53B538EB` (`imdb_id`),
+  KEY `IDX_1D5EF26F899FB366` (`director_id`),
+  CONSTRAINT `FK_1D5EF26F899FB366` FOREIGN KEY (`director_id`) REFERENCES `director` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2462 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</sql_create_table>
+</table>
+<table name="movie_actor" view="colnames">
+<left>343</left>
+<top>13</top>
+<width>144</width>
+<height>117</height>
+<sql_create_table>CREATE TABLE `movie_actor` (
+  `movie_id` int(11) NOT NULL,
+  `actor_id` int(11) NOT NULL,
+  PRIMARY KEY (`movie_id`,`actor_id`),
+  KEY `IDX_3A374C658F93B6FC` (`movie_id`),
+  KEY `IDX_3A374C6510DAF24A` (`actor_id`),
+  CONSTRAINT `FK_3A374C6510DAF24A` FOREIGN KEY (`actor_id`) REFERENCES `actor` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_3A374C658F93B6FC` FOREIGN KEY (`movie_id`) REFERENCES `movie` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</sql_create_table>
+</table>
+<table name="movie_genre" view="colnames">
+<left>1039</left>
+<top>359</top>
+<width>131</width>
+<height>113</height>
+<sql_create_table>CREATE TABLE `movie_genre` (
+  `id_genre` int(11) NOT NULL,
+  `id_movie` int(11) NOT NULL,
+  PRIMARY KEY (`id_genre`,`id_movie`),
+  KEY `id_movie` (`id_movie`),
+  CONSTRAINT `movie_genre_ibfk_1` FOREIGN KEY (`id_genre`) REFERENCES `genre` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `movie_genre_ibfk_2` FOREIGN KEY (`id_movie`) REFERENCES `movie` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="selection" view="colnames">
+<left>529</left>
+<top>441</top>
+<width>112</width>
+<height>146</height>
+<sql_create_table>CREATE TABLE `selection` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `movie_id` varchar(11) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `saved_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `IDX_96A50CD7A76ED395` (`user_id`),
+  KEY `IDX_96A50CD78F93B6FC` (`movie_id`),
+  CONSTRAINT `selection_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
+  CONSTRAINT `selection_ibfk_2` FOREIGN KEY (`movie_id`) REFERENCES `movie` (`imdb_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=246 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</sql_create_table>
+</table>
+<table name="selection_actor" view="colnames">
+<left>8</left>
+<top>247</top>
+<width>120</width>
+<height>129</height>
+<sql_create_table>CREATE TABLE `selection_actor` (
+  `id_user` int(11) NOT NULL,
+  `id_actor` int(11) NOT NULL,
+  `nb` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id_user`,`id_actor`),
+  KEY `id_actor` (`id_actor`),
+  CONSTRAINT `selection_actor_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`),
+  CONSTRAINT `selection_actor_ibfk_2` FOREIGN KEY (`id_actor`) REFERENCES `actor` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="selection_director" view="colnames">
+<left>367</left>
+<top>174</top>
+<width>163</width>
+<height>119</height>
+<sql_create_table>CREATE TABLE `selection_director` (
+  `id_user` int(11) NOT NULL,
+  `id_director` int(11) NOT NULL,
+  `nb` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id_user`,`id_director`),
+  KEY `id_director` (`id_director`),
+  CONSTRAINT `selection_director_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`),
+  CONSTRAINT `selection_director_ibfk_2` FOREIGN KEY (`id_director`) REFERENCES `director` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="selection_genre" view="colnames">
+<left>6</left>
+<top>648</top>
+<width>165</width>
+<height>133</height>
+<sql_create_table>CREATE TABLE `selection_genre` (
+  `id_user` int(11) NOT NULL,
+  `id_genre` int(11) NOT NULL,
+  `nb` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id_user`,`id_genre`),
+  KEY `id_genre` (`id_genre`),
+  CONSTRAINT `selection_genre_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`),
+  CONSTRAINT `selection_genre_ibfk_2` FOREIGN KEY (`id_genre`) REFERENCES `genre` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="user" view="colnames">
+<left>210</left>
+<top>372</top>
+<width>111</width>
+<height>197</height>
+<sql_create_table>CREATE TABLE `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(190) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `firstname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lastname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `registration` datetime NOT NULL,
+  `roles` longtext COLLATE utf8mb4_unicode_ci COMMENT '(DC2Type:array)',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UNIQ_8D93D649E7927C74` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</sql_create_table>
+</table>
+</tables>
+</canvas>
+</schemadesigner>
