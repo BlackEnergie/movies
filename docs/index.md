@@ -1,37 +1,34 @@
-## Welcome to GitHub Pages
+# Movies Search Engine - documentation
 
-You can use the [editor on GitHub](https://github.com/BlackEnergie/movies/edit/master/docs/index.md) to maintain and preview the content for your website in Markdown files.
+## Utilisation
+Il est recommandé, pour une utilisation complète de l'application, de s'identifier ou de crééer un compte.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+#### Information
+Toutes les données sur les films sont fournies par l'[API Omdb](http://www.omdbapi.com/).
 
-### Markdown
+## Hors connexion
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+### Catalogue
+Cet onglet vous permet de naviguer et de rechercher des films présents dans la base de données du site. Vous pouvez rechercher des films selon leur **Titre**, leurs **Acteurs**, leurs **Genres** ou leur **Réalisateur**.
 
-```markdown
-Syntax highlighted code block
+### Search
+Si vous souhaiter trouver un film avec son titre, il vous suffit de le rechercher dans l'onglet 'Search'. S'ils n'étaient pas présents dans le catalogue, tous les films apparus dans la recherche sont désormais disponible dans toute l'application.
 
-# Header 1
-## Header 2
-### Header 3
+### Connexion
+L'onglet de connexion désigné par une icône permet de créer un compte ou de se connecter à un compte existant.
 
-- Bulleted
-- List
+## Interface personnalisée
+Une fois la connexion établie, l'utilisateur peut accéder à des contenus personnalisés.
 
-1. Numbered
-2. List
+### Ajouter un film à ma liste
+Un bouton apparaît désormais permettant d'ajouter ou de supprimer un film de sa sélection. Le bouton bleu signifie **l'ajout** du film, le rouge **la supression** du film, le vert la **réussite** de l'action et en orange **l'échec** du a un problème technique.
 
-**Bold** and _Italic_ and `Code` text
+### My list
+Chaque film ajouté à la sélection par un utilisateur se retrouve dans cet onglet qui permet de visualiser et de rechercher dans ses films favoris. La barre de recherche filtre les résultats et affiche le nombre de films correspondants.
 
-[Link](url) and ![Image](src)
-```
+### Recommended
+Cet onglet prend en compte les films que vous avez aimés pour vous recommender des **Genres**, des **Acteurs** et des **Réalisateurs** parmis vos favoris. Un clique sur un des boutons présents donne directement tous les films du catalogue en lien avec le filtre choisi. Les recommandations faites changent en temps réel en fonction des films ajoutés à la liste.
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/BlackEnergie/movies/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+## Je ne trouve pas mon film !
+**Tous les onglets sauf 'Search' n'utilisent que les films présents dans le catalogue du site !**
+A chaque recherche sur ses onglets, **un lien vous propose de faire une recherche avec l'outil 'Search' et ajouter votre film à la base de données**. Il sera désormais accessible à tous !
